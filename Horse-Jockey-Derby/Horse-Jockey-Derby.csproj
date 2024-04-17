@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +79,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\horse-jockey-derby-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\horse-jockey-derby-bg-resized.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\blue-horse\blue-horse.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\blue-horse\blue-horse-crop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\green-horse\green-horse-crop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\orange-horse\orange-horse-crop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\purple-horse\purple-horse-crop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\red-horse\red-horse-crop.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\bet-selection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\bet-selection %28Small%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
