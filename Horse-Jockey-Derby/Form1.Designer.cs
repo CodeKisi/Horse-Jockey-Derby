@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.labelWinner = new System.Windows.Forms.Label();
             this.panelFinish = new System.Windows.Forms.Panel();
             this.buttonStart = new System.Windows.Forms.Button();
             this.panelBet = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxBetAmount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.selectRed = new System.Windows.Forms.RadioButton();
             this.selectPurple = new System.Windows.Forms.RadioButton();
@@ -47,12 +49,15 @@
             this.selectBlue = new System.Windows.Forms.RadioButton();
             this.labelBet = new System.Windows.Forms.Label();
             this.panelResult = new System.Windows.Forms.Panel();
+            this.labelTotalGained = new System.Windows.Forms.Label();
+            this.labelResultMoney = new System.Windows.Forms.Label();
             this.labelHorseWinner = new System.Windows.Forms.Label();
             this.buttonContinue = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
             this.panelWelcome = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.labelWelcome = new System.Windows.Forms.Label();
+            this.labelMoney = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -74,6 +79,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -123,17 +129,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // labelWinner
-            // 
-            this.labelWinner.AutoSize = true;
-            this.labelWinner.BackColor = System.Drawing.Color.Transparent;
-            this.labelWinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWinner.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelWinner.Location = new System.Drawing.Point(702, 561);
-            this.labelWinner.Name = "labelWinner";
-            this.labelWinner.Size = new System.Drawing.Size(0, 38);
-            this.labelWinner.TabIndex = 7;
-            // 
             // panelFinish
             // 
             this.panelFinish.BackColor = System.Drawing.Color.Transparent;
@@ -146,7 +141,7 @@
             // 
             this.buttonStart.BackColor = System.Drawing.Color.Gold;
             this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStart.Location = new System.Drawing.Point(314, 374);
+            this.buttonStart.Location = new System.Drawing.Point(388, 376);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(122, 38);
             this.buttonStart.TabIndex = 9;
@@ -159,6 +154,8 @@
             this.panelBet.BackColor = System.Drawing.Color.Transparent;
             this.panelBet.BackgroundImage = global::Horse_Jockey_Derby.Properties.Resources.bet_selection__Small_;
             this.panelBet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panelBet.Controls.Add(this.label2);
+            this.panelBet.Controls.Add(this.textBoxBetAmount);
             this.panelBet.Controls.Add(this.label1);
             this.panelBet.Controls.Add(this.selectRed);
             this.panelBet.Controls.Add(this.selectPurple);
@@ -171,6 +168,26 @@
             this.panelBet.Size = new System.Drawing.Size(769, 466);
             this.panelBet.TabIndex = 10;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(112, 386);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 28);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Bet amount";
+            // 
+            // textBoxBetAmount
+            // 
+            this.textBoxBetAmount.Location = new System.Drawing.Point(238, 384);
+            this.textBoxBetAmount.Name = "textBoxBetAmount";
+            this.textBoxBetAmount.Size = new System.Drawing.Size(124, 22);
+            this.textBoxBetAmount.TabIndex = 21;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -178,7 +195,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(48, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 32);
+            this.label1.Size = new System.Drawing.Size(149, 26);
             this.label1.TabIndex = 20;
             this.label1.Text = "Select Horse";
             // 
@@ -187,7 +204,7 @@
             this.selectRed.AutoSize = true;
             this.selectRed.Location = new System.Drawing.Point(460, 255);
             this.selectRed.Name = "selectRed";
-            this.selectRed.Size = new System.Drawing.Size(17, 16);
+            this.selectRed.Size = new System.Drawing.Size(14, 13);
             this.selectRed.TabIndex = 19;
             this.selectRed.TabStop = true;
             this.selectRed.UseVisualStyleBackColor = true;
@@ -197,7 +214,7 @@
             this.selectPurple.AutoSize = true;
             this.selectPurple.Location = new System.Drawing.Point(285, 255);
             this.selectPurple.Name = "selectPurple";
-            this.selectPurple.Size = new System.Drawing.Size(17, 16);
+            this.selectPurple.Size = new System.Drawing.Size(14, 13);
             this.selectPurple.TabIndex = 18;
             this.selectPurple.TabStop = true;
             this.selectPurple.UseVisualStyleBackColor = true;
@@ -207,7 +224,7 @@
             this.selectOrange.AutoSize = true;
             this.selectOrange.Location = new System.Drawing.Point(552, 103);
             this.selectOrange.Name = "selectOrange";
-            this.selectOrange.Size = new System.Drawing.Size(17, 16);
+            this.selectOrange.Size = new System.Drawing.Size(14, 13);
             this.selectOrange.TabIndex = 17;
             this.selectOrange.TabStop = true;
             this.selectOrange.UseVisualStyleBackColor = true;
@@ -217,7 +234,7 @@
             this.selectGreen.AutoSize = true;
             this.selectGreen.Location = new System.Drawing.Point(376, 103);
             this.selectGreen.Name = "selectGreen";
-            this.selectGreen.Size = new System.Drawing.Size(17, 16);
+            this.selectGreen.Size = new System.Drawing.Size(14, 13);
             this.selectGreen.TabIndex = 16;
             this.selectGreen.TabStop = true;
             this.selectGreen.UseVisualStyleBackColor = true;
@@ -227,7 +244,7 @@
             this.selectBlue.AutoSize = true;
             this.selectBlue.Location = new System.Drawing.Point(203, 103);
             this.selectBlue.Name = "selectBlue";
-            this.selectBlue.Size = new System.Drawing.Size(17, 16);
+            this.selectBlue.Size = new System.Drawing.Size(14, 13);
             this.selectBlue.TabIndex = 15;
             this.selectBlue.TabStop = true;
             this.selectBlue.UseVisualStyleBackColor = true;
@@ -236,31 +253,58 @@
             // 
             this.labelBet.AutoSize = true;
             this.labelBet.BackColor = System.Drawing.Color.Transparent;
-            this.labelBet.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBet.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBet.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelBet.Location = new System.Drawing.Point(135, 561);
+            this.labelBet.Location = new System.Drawing.Point(140, 557);
             this.labelBet.Name = "labelBet";
-            this.labelBet.Size = new System.Drawing.Size(0, 46);
+            this.labelBet.Size = new System.Drawing.Size(0, 36);
             this.labelBet.TabIndex = 11;
+            this.labelBet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelResult
             // 
             this.panelResult.BackColor = System.Drawing.Color.Red;
+            this.panelResult.Controls.Add(this.labelTotalGained);
+            this.panelResult.Controls.Add(this.labelResultMoney);
             this.panelResult.Controls.Add(this.labelHorseWinner);
             this.panelResult.Controls.Add(this.buttonContinue);
             this.panelResult.Controls.Add(this.labelResult);
-            this.panelResult.Location = new System.Drawing.Point(253, 34);
+            this.panelResult.Location = new System.Drawing.Point(228, 66);
             this.panelResult.Name = "panelResult";
             this.panelResult.Size = new System.Drawing.Size(767, 469);
             this.panelResult.TabIndex = 20;
             this.panelResult.Visible = false;
+            // 
+            // labelTotalGained
+            // 
+            this.labelTotalGained.BackColor = System.Drawing.Color.Transparent;
+            this.labelTotalGained.Font = new System.Drawing.Font("Verdana", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalGained.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.labelTotalGained.Location = new System.Drawing.Point(41, 214);
+            this.labelTotalGained.Name = "labelTotalGained";
+            this.labelTotalGained.Size = new System.Drawing.Size(695, 88);
+            this.labelTotalGained.TabIndex = 4;
+            this.labelTotalGained.Text = "hmm...";
+            this.labelTotalGained.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelResultMoney
+            // 
+            this.labelResultMoney.BackColor = System.Drawing.Color.Transparent;
+            this.labelResultMoney.Font = new System.Drawing.Font("Verdana", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResultMoney.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.labelResultMoney.Location = new System.Drawing.Point(41, 289);
+            this.labelResultMoney.Name = "labelResultMoney";
+            this.labelResultMoney.Size = new System.Drawing.Size(695, 88);
+            this.labelResultMoney.TabIndex = 3;
+            this.labelResultMoney.Text = "hmm...";
+            this.labelResultMoney.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelHorseWinner
             // 
             this.labelHorseWinner.BackColor = System.Drawing.Color.Transparent;
             this.labelHorseWinner.Font = new System.Drawing.Font("Verdana", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHorseWinner.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelHorseWinner.Location = new System.Drawing.Point(32, 216);
+            this.labelHorseWinner.Location = new System.Drawing.Point(41, 126);
             this.labelHorseWinner.Name = "labelHorseWinner";
             this.labelHorseWinner.Size = new System.Drawing.Size(695, 88);
             this.labelHorseWinner.TabIndex = 2;
@@ -285,7 +329,7 @@
             this.labelResult.BackColor = System.Drawing.Color.Transparent;
             this.labelResult.Font = new System.Drawing.Font("Unispace", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelResult.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelResult.Location = new System.Drawing.Point(150, 107);
+            this.labelResult.Location = new System.Drawing.Point(152, 35);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(495, 88);
             this.labelResult.TabIndex = 0;
@@ -297,7 +341,7 @@
             this.panelWelcome.BackColor = System.Drawing.Color.Red;
             this.panelWelcome.Controls.Add(this.button1);
             this.panelWelcome.Controls.Add(this.labelWelcome);
-            this.panelWelcome.Location = new System.Drawing.Point(238, 66);
+            this.panelWelcome.Location = new System.Drawing.Point(250, 39);
             this.panelWelcome.Name = "panelWelcome";
             this.panelWelcome.Size = new System.Drawing.Size(810, 515);
             this.panelWelcome.TabIndex = 21;
@@ -327,25 +371,38 @@
             this.labelWelcome.Text = "Welcome to Horse Jockey Derby!";
             this.labelWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // labelMoney
+            // 
+            this.labelMoney.AutoSize = true;
+            this.labelMoney.BackColor = System.Drawing.Color.Transparent;
+            this.labelMoney.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMoney.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelMoney.Location = new System.Drawing.Point(816, 557);
+            this.labelMoney.Name = "labelMoney";
+            this.labelMoney.Size = new System.Drawing.Size(0, 36);
+            this.labelMoney.TabIndex = 22;
+            this.labelMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Horse_Jockey_Derby.Properties.Resources.horse_jockey_derby_bg_resized;
+            this.BackgroundImage = global::Horse_Jockey_Derby.Properties.Resources.horse_jockey_derby_bg_sized;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1182, 666);
             this.Controls.Add(this.panelWelcome);
             this.Controls.Add(this.panelResult);
-            this.Controls.Add(this.labelBet);
             this.Controls.Add(this.panelBet);
+            this.Controls.Add(this.labelMoney);
+            this.Controls.Add(this.labelBet);
             this.Controls.Add(this.panelFinish);
-            this.Controls.Add(this.labelWinner);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Horse Jockey Derby";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -371,7 +428,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label labelWinner;
         private System.Windows.Forms.Panel panelFinish;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Panel panelBet;
@@ -389,6 +445,11 @@
         private System.Windows.Forms.Panel panelWelcome;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelWelcome;
+        private System.Windows.Forms.Label labelMoney;
+        private System.Windows.Forms.Label labelResultMoney;
+        private System.Windows.Forms.Label labelTotalGained;
+        private System.Windows.Forms.TextBox textBoxBetAmount;
+        private System.Windows.Forms.Label label2;
     }
 }
 
