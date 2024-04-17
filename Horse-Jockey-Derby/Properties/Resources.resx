@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="horse-jockey-derby-bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\horse-jockey-derby-bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bet-selection (Small)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\bet-selection (Small).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="horse-jockey-derby-bg-resized" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\horse-jockey-derby-bg-resized.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="red-horse-crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\red-horse\red-horse-crop.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="purple-horse-crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\purple-horse\purple-horse-crop.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,14 +130,17 @@
   <data name="green-horse-crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\green-horse\green-horse-crop.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="horse-jockey-derby-bg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\horse-jockey-derby-bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="orange-horse-crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\orange-horse\orange-horse-crop.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="red-horse-crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\red-horse\red-horse-crop.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="blue-horse-crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\blue-horse\blue-horse-crop.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="horse-jockey-derby-bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\horse-jockey-derby-bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bet-selection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\bet-selection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,7 +148,7 @@
   <data name="blue-horse" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\blue-horse\blue-horse.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bet-selection (Small)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\bet-selection (Small).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="horse-jockey-derby-bg-sized" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\horse-jockey-derby-bg-sized.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
