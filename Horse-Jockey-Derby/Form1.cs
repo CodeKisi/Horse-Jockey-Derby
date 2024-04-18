@@ -12,18 +12,36 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using System.Media;
+
+
 
 namespace Horse_Jockey_Derby
 {
     public partial class Form1 : Form
     {
+        SoundPlayer bgMusic;
+        SoundPlayer clickAudio;
+        SoundPlayer winAudio;
+        SoundPlayer loseAudio;
+        SoundPlayer inGameAudio;
+
         public Form1()
         {
             InitializeComponent();
             // Set window properties
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            labelMoney.Text = $"${playerMoney}";
+
+            // Initialize sound players
+            bgMusic = new SoundPlayer("bg-music.wav");
+            clickAudio = new SoundPlayer("mouse-click.wav");
+            winAudio = new SoundPlayer("yay.wav");
+            loseAudio = new SoundPlayer("aww.wav");
+            inGameAudio = new SoundPlayer("horse-running.wav");
+
+            // Play background music
+            bgMusic.Play();
         }
 
         // Integers to store starting position and store player's bet
@@ -31,15 +49,16 @@ namespace Horse_Jockey_Derby
         string bet;
         int playerMoney = 500;
         int betAmount;
-
+        Random random = new Random();
 
         private void buttonContinue_Click(object sender, EventArgs e)
         {
+            clickAudio.Play();
+            bgMusic.Play();
             // Hide result panel and reset bet and label text
             panelResult.Visible = false;
             bet = "";
             labelBet.Text = "";
-           
             labelResult.Text = "";
 
             // Show betting panel
@@ -52,10 +71,10 @@ namespace Horse_Jockey_Derby
             pictureBox4.Left = purpleHorse;
             pictureBox5.Left = redHorse;
         }
- 
+
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            clickAudio.Play();
 
             // Check if no bet is selected and show error message
             if (string.IsNullOrWhiteSpace(textBoxBetAmount.Text))
@@ -88,25 +107,17 @@ namespace Horse_Jockey_Derby
                 return;
             }
 
-            string selectedHorse = null;
-            switch (true)
-            {
-                case var _ when selectBlue.Checked:
-                    selectedHorse = "Azure Arrow";
-                    break;
-                case var _ when selectGreen.Checked:
-                    selectedHorse = "Emerald Eclipse";
-                    break;
-                case var _ when selectOrange.Checked:
-                    selectedHorse = "Citrus Comet";
-                    break;
-                case var _ when selectPurple.Checked:
-                    selectedHorse = "Amethyst Ace";
-                    break;
-                case var _ when selectRed.Checked:
-                    selectedHorse = "Scarlet Spear";
-                    break;
-            }
+            string selectedHorse = "";
+            if (selectBlue.Checked)
+                selectedHorse = "Azure Arrow";
+            else if (selectGreen.Checked)
+                selectedHorse = "Emerald Eclipse";
+            else if (selectOrange.Checked)
+                selectedHorse = "Citrus Comet";
+            else if (selectPurple.Checked)
+                selectedHorse = "Amethyst Ace";
+            else if (selectRed.Checked)
+                selectedHorse = "Scarlet Spear";
 
             if (selectedHorse == null)
             {
@@ -114,38 +125,33 @@ namespace Horse_Jockey_Derby
                 return;
             }
 
-            // Declare betAmount and playerMoney as local variables
-            int localBetAmount = betAmount;
-            int localPlayerMoney = playerMoney;
+            // Assign the selected horse to the bet variable
+            bet = selectedHorse;
+
+            // Update the global betAmount variable
+            this.betAmount = betAmount;
 
             // Set bet label text and start race timer
-            labelBet.Text = $"{selectedHorse} ${localBetAmount}";
+            labelBet.Text = $"{selectedHorse} ${betAmount}";
             timer1.Enabled = true;
-
             // Hide betting panel
             panelBet.Visible = false;
-            labelMoney.Text = $"${localPlayerMoney}";
-
-            // Pass localBetAmount and localPlayerMoney to WinningHorse method
-            WinningHorse(selectedHorse == bet, ref localPlayerMoney, localBetAmount);
-            
-
-            // Update class variable playerMoney with localPlayerMoney
-            playerMoney = localPlayerMoney;
+            labelMoney.Text = $"${playerMoney}";
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            // Show money at start
+            labelMoney.Text = $"${playerMoney}";
+
             // Hide welcome panel
             panelWelcome.Visible = false;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+            bgMusic.Stop();
+            inGameAudio.Play();
             // Get widths of horse pictures for finish line comparison
             int width_blueHorse = pictureBox1.Width;
             int width_greenHorse = pictureBox2.Width;
@@ -156,7 +162,7 @@ namespace Horse_Jockey_Derby
             int start = panelFinish.Left;
 
             // Move each horse picture by a random distance within a range
-            pictureBox1.Left += random.Next(5, 16);
+            pictureBox1.Left += random.Next(15, 16);
             pictureBox2.Left += random.Next(5, 16);
             pictureBox3.Left += random.Next(5, 16);
             pictureBox4.Left += random.Next(5, 16);
@@ -167,55 +173,51 @@ namespace Horse_Jockey_Derby
             {
                 // Stop timer, display winner text, and update result based on bet
                 timer1.Stop();
-             
                 labelHorseWinner.Text = "Azure Arrow WINS!";
-                //WinningHorse(bet == "Azure Arrow", ref playerMoney, betAmount);
+                WinningHorse(bet == "Azure Arrow");
                 panelResult.Visible = true;
                 labelMoney.Text = $"${playerMoney}";
             }
             else if (width_greenHorse + pictureBox2.Left + 5 >= start)
             {
                 timer1.Stop();
-               
                 labelHorseWinner.Text = "Emerald Eclipse WINS!";
-                //WinningHorse(bet == "Emerald Eclipse", ref playerMoney, betAmount);
+                WinningHorse(bet == "Emerald Eclipse");
                 panelResult.Visible = true;
                 labelMoney.Text = $"${playerMoney}";
             }
             else if (width_orangeHorse + pictureBox3.Left >= start)
             {
                 timer1.Stop();
-              
                 labelHorseWinner.Text = "Citrus Comet WINS!";
-                //WinningHorse(bet == "Citrus Comet", ref playerMoney, betAmount);
+                WinningHorse(bet == "Citrus Comet");
                 panelResult.Visible = true;
                 labelMoney.Text = $"${playerMoney}";
             }
             else if (width_purpleHorse + pictureBox4.Left >= start)
             {
                 timer1.Stop();
-             
                 labelHorseWinner.Text = "Amethyst Ace WINS!";
-                //WinningHorse(bet == "Amethyst Ace", ref playerMoney, betAmount);
+                WinningHorse(bet == "Amethyst Ace");
                 panelResult.Visible = true;
                 labelMoney.Text = $"${playerMoney}";
             }
             else if (width_redHorse + pictureBox5.Left >= start)
             {
                 timer1.Stop();
-            
                 labelHorseWinner.Text = "Scaret Spear WINS!";
-                //WinningHorse(bet == "Scarlet Spear", ref playerMoney, betAmount);
+                WinningHorse(bet == "Scarlet Spear");
                 panelResult.Visible = true;
                 labelMoney.Text = $"${playerMoney}";
             }
         }
 
-        private void WinningHorse(bool isWinner, ref int playerMoney, int betAmount)
+        private void WinningHorse(bool isWinner)
         {
             // Update result label based on win/lose
             if (isWinner)
             {
+                winAudio.Play();
                 labelResult.Text = "WINNER!";
                 playerMoney += betAmount;
                 labelTotalGained.Text = "Gained +$" + betAmount;
@@ -223,20 +225,19 @@ namespace Horse_Jockey_Derby
             }
             else
             {
+                loseAudio.Play();
                 labelResult.Text = "LOSER!";
                 playerMoney -= betAmount;
                 labelTotalGained.Text = "Loss -$" + betAmount;
                 labelResultMoney.Text = "Total Money: $" + playerMoney;
             }
+
             if (playerMoney <= 0)
             {
                 MessageBox.Show("Insufficient Funds!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
         }
-
-        Random random = new Random();
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -246,8 +247,7 @@ namespace Horse_Jockey_Derby
             orangeHorse = pictureBox3.Left;
             purpleHorse = pictureBox4.Left;
             redHorse = pictureBox5.Left;
-            
-            
         }
     }
 }
+
