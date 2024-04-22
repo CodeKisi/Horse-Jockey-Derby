@@ -14,18 +14,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Media;
 
-
-
 namespace Horse_Jockey_Derby
 {
     public partial class Form1 : Form
     {
+        // Sound players for various audio effects
         SoundPlayer bgMusic;
         SoundPlayer clickAudio;
         SoundPlayer winAudio;
         SoundPlayer loseAudio;
-        SoundPlayer inGameAudio;
-
         public Form1()
         {
             InitializeComponent();
@@ -33,12 +30,11 @@ namespace Horse_Jockey_Derby
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
 
-            // Initialize sound players
+            // Initialize sound players with audio files
             bgMusic = new SoundPlayer("bg-music.wav");
             clickAudio = new SoundPlayer("mouse-click.wav");
             winAudio = new SoundPlayer("yay.wav");
             loseAudio = new SoundPlayer("aww.wav");
-            inGameAudio = new SoundPlayer("horse-running.wav");
 
             // Play background music
             bgMusic.Play();
@@ -53,6 +49,7 @@ namespace Horse_Jockey_Derby
 
         private void buttonContinue_Click(object sender, EventArgs e)
         {
+            // Play click audio when continue button is clicked
             clickAudio.Play();
             bgMusic.Play();
             // Hide result panel and reset bet and label text
@@ -74,6 +71,7 @@ namespace Horse_Jockey_Derby
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Play click audio when bet button is clicked
             clickAudio.Play();
 
             // Check if no bet is selected and show error message
@@ -150,8 +148,9 @@ namespace Horse_Jockey_Derby
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+            // Stop background music and play in-game audio
             bgMusic.Stop();
-            inGameAudio.Play();
+
             // Get widths of horse pictures for finish line comparison
             int width_blueHorse = pictureBox1.Width;
             int width_greenHorse = pictureBox2.Width;
@@ -162,7 +161,7 @@ namespace Horse_Jockey_Derby
             int start = panelFinish.Left;
 
             // Move each horse picture by a random distance within a range
-            pictureBox1.Left += random.Next(15, 16);
+            pictureBox1.Left += random.Next(5, 16);
             pictureBox2.Left += random.Next(5, 16);
             pictureBox3.Left += random.Next(5, 16);
             pictureBox4.Left += random.Next(5, 16);
